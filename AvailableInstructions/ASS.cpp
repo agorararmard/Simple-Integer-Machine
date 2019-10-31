@@ -6,7 +6,7 @@ class assInstruction: public Instruction2Param{
             throw(101);
         }
     }
-    void exec(){
+    virtual void exec(){
         *rd = *rs;
     }
     ~assInstruction(){}

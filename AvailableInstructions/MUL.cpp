@@ -6,7 +6,7 @@ class mulInstruction: public Instruction3Param{
                 throw(101);
         }
     }
-    void exec(){
+    virtual void exec(){
         *rd = *rs1 * *rs2;
     }
     ~mulInstruction(){}

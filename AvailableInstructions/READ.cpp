@@ -6,7 +6,7 @@ class readInstruction: public Instruction1Param{
                 throw(101);
         }
     }
-    void exec(){
+    virtual void exec(){
         std::cin >> *rs;
     }
     ~readInstruction(){}

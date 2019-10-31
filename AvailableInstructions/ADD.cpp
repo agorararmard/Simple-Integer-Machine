@@ -6,8 +6,7 @@ class addInstruction: public Instruction3Param{
             throw(101);
         }
     }
-    void exec(){
-        std::cout << "adding: " << *rs2 << " " <<*rs1 << std::endl; 
+    virtual void exec(){
         *rd = *rs1 + *rs2;
     }
     ~addInstruction(){}

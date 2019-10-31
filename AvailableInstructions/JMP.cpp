@@ -6,7 +6,7 @@ class jmpInstruction: public Instruction2Param{
                 throw(101);
         }
     }
-    void exec(){
+    virtual void exec(){
         if(*rs <0 || *rs > InstructionMemorySize)
             throw(102);
         *rd = (*rs) - 1;

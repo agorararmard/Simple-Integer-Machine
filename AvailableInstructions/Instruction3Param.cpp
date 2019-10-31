@@ -35,7 +35,7 @@ class Instruction3Param: public Instruction{
             *rs2 = *I.rs2;
         }
     }
-    virtual void exec()=0;
+    virtual void exec(){}
     ~Instruction3Param(){
         if(!isRdAddress) delete rd;
         if(!isRs1Address) delete rs1;

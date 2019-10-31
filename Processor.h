@@ -7,13 +7,21 @@
 class Proccessor{
     private:
         int dataMemory[dataMemorySize];
-        Instruction instMemory[InstructionMemorySize];
+        Instruction *instMemory[InstructionMemorySize];
         int pc;
     public:
-        Proccessor();
+        Proccessor(){}
         void loadInstMem(std::string filename);
         void run();
-        ~Proccessor(){}
+        ~Proccessor(){
+            for (int i =0; i < InstructionMemorySize;i++)
+                if(instMemory[i] != nullptr)
+                    delete instMemory[i];
+                else
+                    break;
+                
+
+        }
 };
 #include"Processor.cpp"
 #endif

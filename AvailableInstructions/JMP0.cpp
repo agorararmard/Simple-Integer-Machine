@@ -6,7 +6,7 @@ class jmp0Instruction: public Instruction3Param{
             throw(101);
         }
     }
-    void exec(){
+    virtual void exec(){
         if(*rs2 <0 || *rs2 > InstructionMemorySize)
             throw(102);
         if(!*rs1){

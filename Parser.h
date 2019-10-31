@@ -7,7 +7,7 @@ class Parser{
     private:
         InstructionFactory instFactory;
         int* dataMemory;
-        Instruction* instMemory;
+        Instruction** instMemory;
         int* pc;
        
         std::string fileInst;
@@ -17,7 +17,7 @@ class Parser{
         void getSecondParameter(std::string& line,std::string& secondParam);
         void getThirdParameter(std::string& line,std::string& thirdParam);
     public:
-        Parser(int* &dataMemory,Instruction* &instMemory,int& pc, std::string fileInst):dataMemory(dataMemory),instMemory(instMemory),pc(&pc),fileInst(fileInst){}
+        Parser(int* &dataMemory,Instruction** &instMemory,int& pc, std::string fileInst):dataMemory(dataMemory),instMemory(instMemory),pc(&pc),fileInst(fileInst){}
         
         void readInstMem();
 
@@ -25,5 +25,5 @@ class Parser{
 
 
 };
-
+#include"Parser.cpp"
 #endif

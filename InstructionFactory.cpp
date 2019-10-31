@@ -8,7 +8,6 @@ int InstructionFactory::convertToInt(std::string s){
 bool InstructionFactory::interpretParam(std::string &param,int* &p, int* &dataMemory){
             if(param[0] == '$'){
                 int address = convertToInt(param.substr(1));
-                std::cout << "address is : " << address << std::endl;
                 if(address >0 && address < dataMemorySize)
                     {
                         p = &dataMemory[address];
@@ -21,8 +20,8 @@ bool InstructionFactory::interpretParam(std::string &param,int* &p, int* &dataMe
             return false;
 }
 
-Instruction* InstructionFactory::createInstruction(std::string instType, std::string firstParam, std::string secondParam, std::string thirdParam,int&pc, int* &dataMemory)
-{
+Instruction* InstructionFactory::createInstruction(std::string instType, std::string firstParam, std::string secondParam, std::string thirdParam,int&pc, int* &dataMemory){
+
     if(instType == "ADD"){
 
         if(firstParam!="" &&secondParam !="" && thirdParam !="")
@@ -44,7 +43,7 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             int *p1,*p2;
             bool fp2 = interpretParam(secondParam,p2,dataMemory);
             bool fp1 = interpretParam(firstParam,p1,dataMemory);
-            return new assInstruction(*p1,fp1,*p2,fp2);
+            return new negInstruction(*p1,fp1,*p2,fp2);
         }
         else 
             throw(104);

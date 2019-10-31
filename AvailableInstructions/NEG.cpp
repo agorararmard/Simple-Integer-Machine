@@ -6,8 +6,8 @@ class negInstruction: public Instruction2Param{
                 throw(101);
         }
     }
-    void exec(){
-        *rd = -*rs;
+    virtual void exec(){
+        *rd = -(*rs);
     }
     ~negInstruction(){}
 };
