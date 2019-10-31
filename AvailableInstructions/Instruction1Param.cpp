@@ -1,4 +1,4 @@
-#include "Instruction.cpp"
+#include "../sizes.h"
 class Instruction1Param: public Instruction{
     protected:
         int *rs;

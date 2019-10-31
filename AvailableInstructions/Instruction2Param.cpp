@@ -1,4 +1,4 @@
-#include "Instruction.cpp"
+#include"../sizes.h"
 class Instruction2Param: public Instruction{
     protected:
         int *rd;    //rd is always an address

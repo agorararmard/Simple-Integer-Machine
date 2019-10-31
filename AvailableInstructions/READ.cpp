@@ -1,5 +1,4 @@
-#include "Instruction1Param.cpp"
-#include "sizes.h"
+#include"../sizes.h"
 class readInstruction: public Instruction1Param{
     public:
     readInstruction(int& rs, bool isRsAddress): Instruction1Param(rs, isRsAddress){

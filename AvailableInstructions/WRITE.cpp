@@ -1,5 +1,4 @@
-#include "Instruction1Param.cpp"
-#include "sizes.h"
+#include"../sizes.h"
 class writeInstruction: public Instruction1Param{
     public:
     writeInstruction(int& rs, bool isRsAddress): Instruction1Param(rs, isRsAddress){
