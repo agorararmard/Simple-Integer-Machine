@@ -1,5 +1,6 @@
 #include "Processor.h"
 
+
 void Proccessor::loadInstMem(std::string filename){
     int *d =dataMemory;
     Instruction **i = instMemory;
@@ -8,6 +9,7 @@ void Proccessor::loadInstMem(std::string filename){
     P.readInstMem();
     }catch(std::exception& exp){
         std::cout << exp.what() << std::endl;
+        return;
     }
 }
 
@@ -17,15 +19,17 @@ void Proccessor::run(){
     while(true){
         try{
             if(pc == InstructionMemorySize) return;
-            std::cout << "\nPC: " << pc<< " output -> ";
-       
+            std::cout << "\nProgram Counter: " << pc<< " Input/Output ---> ";
+            if(instMemory[pc] == nullptr)   throw NullInstruction();
             instMemory[pc]->exec();
             pc++;
-        }catch(std::exception& exp){
-            std::cout << HALTException().what() << std::endl;
+        }catch(std::runtime_error& exp){
             if(exp.what() == HALTException().what())
                 return;
-            else std::cout << exp.what() << std::endl;
+            else {
+                std::cout << exp.what() << std::endl;
+                return;
+            }
         }
     }
 }

@@ -7,7 +7,16 @@ class mulInstruction: public Instruction3Param{
         }
     }
     virtual void exec(){
-        *rd = *rs1 * *rs2;
+        int tmp1 = *rs1;
+        int tmp2 = *rs2;
+
+        *rd = (*rs1) * (*rs2);
+        
+        if(tmp1 !=0 && tmp2!=0){    //for detecting overflow
+            if(*rd/ tmp1 != tmp2){
+                throw OverFlow();
+            }
+        }
     }
     ~mulInstruction(){}
 };

@@ -8,7 +8,13 @@ class addInstruction: public Instruction3Param{
         }
     }
     virtual void exec(){
+        int tmp1 = *rs1;
+        int tmp2 = *rs2;
+
         *rd = *rs1 + *rs2;
+
+        if(*rd - tmp1 != tmp2) //for detecting overflow
+            throw OverFlow();
     }
     ~addInstruction(){}
 };
