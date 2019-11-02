@@ -7,7 +7,7 @@ class Instruction1Param: public Instruction{
     Instruction1Param(int& rs, bool isRsAddress):rs(&rs),isRsAddress(isRsAddress){
 
     }
-    virtual void exec(){}
+    virtual void exec()=0;
     virtual ~Instruction1Param(){
         if(!isRsAddress) delete rs;
     };    //here the destructor of P is called so there is no need to do anything

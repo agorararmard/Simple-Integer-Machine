@@ -10,7 +10,7 @@ class Instruction2Param: public Instruction{
 
     }
 
-    virtual void exec(){}
+    virtual void exec()=0;
     virtual~Instruction2Param(){
         if(!isRdAddress) delete rd;
         if(!isRsAddress) delete rs;

@@ -8,5 +8,4 @@
 #include "./AvailableInstructions/Instruction1Param.cpp"
 #include "./AvailableInstructions/Instruction2Param.cpp"
 #include "./AvailableInstructions/Instruction3Param.cpp"
-
 #endif

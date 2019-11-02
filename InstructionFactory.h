@@ -2,6 +2,7 @@
 #define INSTRUCTIONFACTORY_H
 #include "sizes.h"
 #include "Instructions.h"
+#include "Exceptions.h"
 #include <cstdlib>
 
 class InstructionFactory

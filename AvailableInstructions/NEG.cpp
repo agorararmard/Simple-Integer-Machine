@@ -3,7 +3,7 @@ class negInstruction: public Instruction2Param{
     public:
     negInstruction(int& rs, bool isRsAddress,int& rd, bool isRdAddress ): Instruction2Param(rs, isRsAddress, rd, isRdAddress){
         if(!isRdAddress){
-                throw(101);
+                throw ParamterShouldBeAddress("NEG", "2");
         }
     }
     virtual void exec(){

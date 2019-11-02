@@ -3,7 +3,7 @@
 #include "Parser.h"
 #include "sizes.h"
 #include "Instructions.h"
-
+#include "Exceptions.h"
 class Proccessor{
     private:
         int dataMemory[dataMemorySize];
@@ -19,8 +19,6 @@ class Proccessor{
                     delete instMemory[i];
                 else
                     break;
-                
-
         }
 };
 #include"Processor.cpp"

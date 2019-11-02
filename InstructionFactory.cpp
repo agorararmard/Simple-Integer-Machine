@@ -2,17 +2,18 @@
 
 int InstructionFactory::convertToInt(std::string s){
     int ret = atoi(s.c_str());
-    if(!ret && s[0] != '0' && s.length()==1) throw(104);
+    if(!ret && s[0] != '0' && s.length()==1) throw InvalidParameter(s);
     return ret;
 }
 bool InstructionFactory::interpretParam(std::string &param,int* &p, int* &dataMemory){
             if(param[0] == '$'){
                 int address = convertToInt(param.substr(1));
-                if(address >0 && address < dataMemorySize)
+                if(address >=0 && address < dataMemorySize)
                     {
                         p = &dataMemory[address];
                         return true;
                     }
+                    else throw OutOfDataMemoryBounds();
             }else {
                 p = new int;
                 *p = convertToInt(param); 
@@ -34,7 +35,7 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             return new addInstruction(*p1,fp1,*p2,fp2,*p3,fp3);
         }
         else 
-            throw(104);
+            throw InsufficientParameters("ADD",std::to_string(pc));
     }
     
     if(instType =="NEG"){
@@ -46,7 +47,7 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             return new negInstruction(*p1,fp1,*p2,fp2);
         }
         else 
-            throw(104);
+            throw InsufficientParameters("NEG",std::to_string(pc));
     }
 
 
@@ -61,7 +62,7 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             return new mulInstruction(*p1,fp1,*p2,fp2,*p3,fp3);
         }
         else 
-            throw(104);
+            throw InsufficientParameters("MUL",std::to_string(pc));
     }
 
     if(instType =="JMP"){
@@ -73,7 +74,7 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             return new jmpInstruction(*p1,fp1, pc,true);
         }
         else 
-            throw(104);
+            throw InsufficientParameters("JMP",std::to_string(pc));
     }
 
     if(instType =="JMP0"){
@@ -86,7 +87,7 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             return new jmp0Instruction(*p1,fp1,*p2,fp2,pc,true);
         }
         else 
-            throw(104);
+            throw InsufficientParameters("JMP0",std::to_string(pc));
  
     }
 
@@ -100,7 +101,7 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             return new assInstruction(*p1,fp1,*p2,fp2);
         }
         else 
-            throw(104);
+            throw InsufficientParameters("ASS",std::to_string(pc));
     }
 
     if(instType =="LE"){
@@ -114,7 +115,7 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             return new leInstruction(*p1,fp1,*p2,fp2,*p3,fp3);
         }
         else 
-            throw(104);
+            throw InsufficientParameters("LE",std::to_string(pc));
     }
 
     if(instType =="READ"){
@@ -125,7 +126,9 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             int *p;
             bool fp = interpretParam(firstParam,p,dataMemory);
             return new readInstruction(*p,fp);
-        }else throw(104);
+        }
+        else 
+            throw InsufficientParameters("READ",std::to_string(pc));
     }
 
     if(instType =="WRITE"){
@@ -134,7 +137,9 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
             int *p;
             bool fp = interpretParam(firstParam,p,dataMemory);
             return new writeInstruction(*p,fp);
-        }else throw(104);
+        }
+        else 
+            throw InsufficientParameters("WRITE",std::to_string(pc));
         
     }
 
@@ -143,9 +148,12 @@ Instruction* InstructionFactory::createInstruction(std::string instType, std::st
         if(firstParam =="" && secondParam =="" && thirdParam =="")
             return new haltInstruction();
         else{
-            throw(104);
+            throw InsufficientParameters("HALT",std::to_string(pc));
         }
     }
-    throw(104); //invalid instruction
+
+
+    
+    throw InvalidInstruction(instType, std::to_string(pc));
 }
 

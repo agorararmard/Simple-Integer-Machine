@@ -4,7 +4,11 @@ void Proccessor::loadInstMem(std::string filename){
     int *d =dataMemory;
     Instruction **i = instMemory;
     Parser P(d,i,pc, filename);
+    try{
     P.readInstMem();
+    }catch(std::exception& exp){
+        std::cout << exp.what() << std::endl;
+    }
 }
 
 
@@ -17,10 +21,11 @@ void Proccessor::run(){
        
             instMemory[pc]->exec();
             pc++;
-        }catch(int& ex){
-            if(ex == 103)
+        }catch(std::exception& exp){
+            std::cout << HALTException().what() << std::endl;
+            if(exp.what() == HALTException().what())
                 return;
-            else std::cout << ex << std::endl;
+            else std::cout << exp.what() << std::endl;
         }
     }
 }
