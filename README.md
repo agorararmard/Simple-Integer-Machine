@@ -131,7 +131,7 @@
     
   - Print the sum.
 
-    Used instruction types: READ, LE, JMP0, JMP, ASS, WRITE, HALT
+    Used instruction types: READ, JMP0, JMP, ASS, ADD, WRITE, HALT
 
 
 ### crash1.txt:
