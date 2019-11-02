@@ -36,7 +36,7 @@ class Instruction3Param: public Instruction{
         }
     }
     virtual void exec(){}
-    ~Instruction3Param(){
+    virtual ~Instruction3Param(){
         if(!isRdAddress) delete rd;
         if(!isRs1Address) delete rs1;
         if(!isRs2Address) delete rs2;

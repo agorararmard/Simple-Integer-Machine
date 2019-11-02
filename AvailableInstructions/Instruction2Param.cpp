@@ -11,7 +11,7 @@ class Instruction2Param: public Instruction{
     }
 
     virtual void exec(){}
-    ~Instruction2Param(){
+    virtual~Instruction2Param(){
         if(!isRdAddress) delete rd;
         if(!isRsAddress) delete rs;
     };    //here the destructor of P is called so there is no need to do anything
