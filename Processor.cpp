@@ -9,7 +9,7 @@ void Proccessor::loadInstMem(std::string filename){
     P.readInstMem();
     }catch(std::exception& exp){
         std::cout << exp.what() << std::endl;
-        return;
+        throw;
     }
 }
 
@@ -24,11 +24,18 @@ void Proccessor::run(){
             instMemory[pc]->exec();
             pc++;
         }catch(std::runtime_error& exp){
-            if(exp.what() == HALTException().what())
+            std::string s1 = HALTException().what(); 
+            std::string s2 = exp.what(); 
+            //std::cout << s1.size() << std::endl;
+            //std::cout << s2.size() << std::endl;
+            if(s2 == s1)
+            {
+                std::cout << s2 << std::endl;
                 return;
+            }
             else {
-                std::cout << exp.what() << std::endl;
-                return;
+                std::cout << s2 << std::endl;
+                throw;    
             }
         }
     }
