@@ -2,6 +2,10 @@
 #include <string>
 using namespace std;
 
+
+//Receiving the program to run as an argument.
+//All heap allocations are destroyed by the end of the program. No memory leaks.
+//All types of exceptions are handled. Please check README.md for more details.
 int main(int argc, char *argv[]){
     try{
     Proccessor Pr;

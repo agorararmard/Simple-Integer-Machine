@@ -13,32 +13,12 @@ class Instruction3Param: public Instruction{
 
     }
     
-    Instruction3Param(Instruction3Param& I):isRdAddress(I.isRdAddress),isRs1Address(isRs1Address),isRs2Address(isRs2Address){
-        if(isRdAddress){
-            rd = I.rd;
-        }else{
-            rd = new int;
-            *rd = *I.rd;
-        }
-
-        if(isRs1Address){
-            rs1 = I.rs1;
-        }else{
-            rs1 = new int;
-            *rs1 = *I.rs1;
-        }
-
-        if(isRs2Address){
-            rs2 = I.rs2;
-        }else{
-            rs2 = new int;
-            *rs2 = *I.rs2;
-        }
-    }
     virtual void exec()=0;
+
+    //Destructor will free the memory if the value was an immediate.
     virtual ~Instruction3Param(){
         if(!isRdAddress) delete rd;
         if(!isRs1Address) delete rs1;
         if(!isRs2Address) delete rs2;
-    };    //here the destructor of P is called so there is no need to do anything
+    };  
 };

@@ -10,7 +10,10 @@ class Instruction2Param: public Instruction{
 
     }
 
+
     virtual void exec()=0;
+
+    //Destructor will free the memory if the value was an immediate.
     virtual~Instruction2Param(){
         if(!isRdAddress) delete rd;
         if(!isRsAddress) delete rs;

@@ -11,7 +11,10 @@
     argv[1]: DIRECTORY/FILENAME.txt; the location and name of the file containing the code that you want the processor to run.
   ```
  
-  You can use the already existing sample programs [Sample Programs](./Sample_Programs)
+  You can use the already existing sample programs [Sample Programs](./Sample_Programs). Example:
+  ```
+    ./out ./Sample_Programs/sample3.txt
+  ```
 
   or you can add your own example program and run it using the same command.
 
@@ -58,6 +61,8 @@
 - OutOfInstructionMemoryBounds: if the user tried to access an instruction memory address that is out of bounds
 - ParameterShouldBeAddress: if a parameter was expected to be a data memory address but was received as an immediate
 - OverFlow: for operation overflow while performing instructions
+- BadFile: if the program file doesn't exist, was written mistakenly or was corrupt
+- Memory Allocation Exceptions: new and delete operators throw exceptions of type exception if memory freeing or allocation failed. Those are received by the catch block. Therefore, no need to implement a class for them as they already exist in the STL. 
 
 ### Includes:
 - Exceptions.h: to encapsulate all exception classes
@@ -116,7 +121,7 @@
 
   - Sort them ascendingly.
     
-  - Print the sorted values.
+  - Print the factorial value.
 
     Used instruction types: READ, ASS, MUL, ADD, JMP0, JMP, WRITE, HALT
 
@@ -132,6 +137,19 @@
   - Print the sum.
 
     Used instruction types: READ, JMP0, JMP, ASS, ADD, WRITE, HALT
+
+### Sample5.txt:
+  Receives an array of numbers and computes the product of all elements.
+  This program runs as follows:
+  - Read the array size from the user from the user.
+
+  - Read the values of the array from the user.
+
+  - Multiply them while reading.
+    
+  - Print the product.
+
+    Used instruction types: READ, JMP0, JMP, ASS, ADD, MUL, WRITE, HALT
 
 
 ### crash1.txt:

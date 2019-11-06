@@ -10,5 +10,5 @@
 #include "Exceptions/NullInstruction.cpp"
 #include "Exceptions/HALTException.cpp"
 #include "Exceptions/OverFlow.cpp"
-
+#include "Exceptions/BadFile.cpp"
 #endif

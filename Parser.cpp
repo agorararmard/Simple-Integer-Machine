@@ -1,9 +1,11 @@
 #include "Parser.h"
+ 
 void Parser::getInstructionType(std::string& line,std::string& instType){
     std::size_t pos = line.find(" ");
     
     instType = line.substr(0,pos);
 }
+
 void Parser::getFirstParameter(std::string& line,std::string& firstParam){
     std::size_t pos1 = line.find(" ");
     std::size_t pos2 = line.find(",");
@@ -14,6 +16,7 @@ void Parser::getFirstParameter(std::string& line,std::string& firstParam){
         firstParam = "";
     
 }
+
 void Parser::getSecondParameter(std::string& line,std::string& secondParam){
     std::size_t pos1 = line.find(",");
     std::size_t pos2 = line.rfind(",");
@@ -22,6 +25,7 @@ void Parser::getSecondParameter(std::string& line,std::string& secondParam){
     else
         secondParam ="";
 }
+
 void Parser::getThirdParameter(std::string& line,std::string& thirdParam){
     std::size_t pos1 = line.rfind(",");
     std::size_t pos2 = line.length();
@@ -39,8 +43,15 @@ void Parser::getThirdParameter(std::string& line,std::string& thirdParam){
 }
 
 
+
+
 void Parser::readInstMem(){
-    std::ifstream fin(fileInst);
+    std::ifstream fin;
+    fin.open(fileInst);
+
+    if(!fin.good()) 
+        throw BadFile();
+
     std::string line;
     int inc = 0;
     
